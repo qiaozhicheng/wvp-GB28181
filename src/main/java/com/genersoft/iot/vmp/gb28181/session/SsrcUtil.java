@@ -70,14 +70,16 @@ public class SsrcUtil {
 	 */
 	private static String getSN() {
 		String sn = null;
+		//数组下标
+		int index = 0;
 		if (notUsed.size() == 0) {
 			throw new RuntimeException("ssrc已经用完");
-		} else if (notUsed.size() == 1) {
-			sn = notUsed.get(0);
-		} else {
-			sn = notUsed.get(new Random().nextInt(notUsed.size() - 1));
-		}
-		notUsed.remove(0);
+		} 
+		//Random.nextInt(10)取值是0至10，但不包含10
+		index = new Random().nextInt(notUsed.size())
+		sn = notUsed.get(index);
+		//移除已被使用的索引下标
+		notUsed.remove(index);
 		isUsed.add(sn);
 		return sn;
 	}
